@@ -64,8 +64,8 @@ SimplifyIAM / midPoint (IGA Platform)
 
 
 #### Screenshots
-![SimplifyIAM / midPoint (IGA Platform)](screenshots/midpoint_dashboard.png)
 ![SimplifyHR(Identity Source)](screenshots/simplifyhr_dashboard.png)
+![SimplifyIAM / midPoint (IGA Platform)](screenshots/midpoint_dashboard.png)
 ![389 Directory Server](screenshots/389_directory_server.png) 
 
 ---
