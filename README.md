@@ -53,12 +53,6 @@ SimplifyIAM / midPoint (IGA Platform)
   - Browsable via phpLDAPadmin
 ```
 
-#### Screenshots
-[SimplifyIAM / midPoint (IGA Platform)](screenshots/midpoint_dashboard.png)
-[SimplifyHR(Identity Source)](screenshots/simplifyhr_dashboard.png)
-[389 Directory Server](screenshots/389_directory_server.png) 
-
-
 **Enterprise equivalent mapping:**
 
 | Lab Component | Enterprise Equivalent | What It Does |
@@ -67,6 +61,12 @@ SimplifyIAM / midPoint (IGA Platform)
 | midPoint | SailPoint IdentityNow, Saviynt | IGA — lifecycle governance and provisioning |
 | 389 Directory Server | Active Directory, Okta Universal Directory | Target system where accounts live |
 | (Week 4) Auth0 | Okta, Entra ID | Access management — authentication, SSO, MFA |
+
+
+#### Screenshots
+![SimplifyIAM / midPoint (IGA Platform)](screenshots/midpoint_dashboard.png)
+![SimplifyHR(Identity Source)](screenshots/simplifyhr_dashboard.png)
+![389 Directory Server](screenshots/389_directory_server.png) 
 
 ---
 
