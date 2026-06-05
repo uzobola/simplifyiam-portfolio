@@ -64,7 +64,7 @@ SimplifyIAM / midPoint (IGA Platform)
 
 
 #### Screenshots
-![SimplifyHR(Identity Source)](screenshots/simplifyhr_dashboard.png)
+![SimplifyHR(Identity Source)](screenshots/01-simplifyhr-before-state.png)
 ![SimplifyIAM / midPoint (IGA Platform)](screenshots/midpoint_dashboard.png)
 ![389 Directory Server](screenshots/389_directory_server.png) 
 
@@ -217,20 +217,20 @@ The provisioning chain is: focus object → role assignment → role inducement 
 
 **Phase 2 — Seven Accounts in phpLDAPadmin**
 
-![phpLDAPadmin Phase 2](screenshots/week2_phase2_ldap_accounts.png)
+![phpLDAPadmin Phase 2](screenshots/05-ldap-accounts-provisioned.png)
 
 **Joiner — Franken Stein (empid 1008) provisioned automatically**
 
 ![SimplifyHR After Joiner](screenshots/week2_joiner_simplifyhr_after.png)
 ![phpLDAPadmin After Joiner](screenshots/week2_joiner_ldap_after.png)
-![phpLDAPadmin After](screenshots/week2_joiner_ldap.png)
 
 **Leaver — Oliver Bennett (1006) disabled and removed from ou=people**
 
-![midPoint User disabled After Leaver](screenshots/week2_leaver_midpoint_user_terminated.png)
-![midPoint Users Before Leaver](screenshots/week2_leaver_midpoint_users_before.png)
-![midPoint Users After Leaver](screenshots/week2_leaver_midpoint_users_after.png)
-![phpLDAPadmin After Leaver](screenshots/week2_leaver_ldap_after.png)
+
+![User terminated](screenshots/07-leaver-simplifyhr-terminated.png)
+![midPoint Users After Leaver](screenshots/)
+![midPoint User disabled After Leaver](screenshots/08-leaver-midpoint-disabled.png)
+![phpLDAPadmin After Leaver](screenshots/09-leaver-ldap-account-removed.png)
 
 **Audit Log — Add Object (Joiner evidence)**
 
