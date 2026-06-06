@@ -10,7 +10,7 @@
 
 ## What I Built
 
-Over five live Saturday sessions I built a complete IAM environment using midPoint, a simulated HR source, and a 389 Directory Server. The environment runs on a dedicated cloud server and replicates how IAM provisioning works in a real enterprise engagement — from HR-triggered lifecycle events through to named accounts in a target directory.
+Over five live Saturday sessions I built a complete IAM environment using midPoint, a simulated HR source, and a 389 Directory Server. The environment runs on a dedicated cloud server and replicates how IAM provisioning works in a real enterprise engagement, from HR-triggered lifecycle events through to named accounts in a target directory.
 
 This repository documents my configuration, architectural decisions, and analysis for each session. It is intended as portfolio evidence for  IAM implementation roles, Cloud Security and GRC Engineering roles, and is designed to bridge hands-on IGA implementation with enterprise-scale IAM architecture.
 
