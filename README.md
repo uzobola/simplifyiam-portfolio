@@ -125,7 +125,7 @@ Deployed and verified a three-component enterprise IAM lab environment on a dedi
 ### Saturday 2 — Joiner and Leaver Processes
 
 **Session:** May 16, 2026 (completed May 22, 2026)  
-**Scenario:** Building the full identity provisioning pipeline from scratch — HR source through IGA to directory target.
+**Scenario:** Building the full identity provisioning pipeline from scratch, HR source through IGA to directory target.
 
 ---
 
