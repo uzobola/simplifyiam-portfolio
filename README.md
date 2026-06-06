@@ -295,3 +295,185 @@ Deleting an account on termination destroys evidence. If a security incident lat
 #### Resume Bullet
 
 > Implemented end-to-end Joiner and Leaver workflows in midPoint IGA — configured CSV HR source connector, attribute mappings with Groovy expressions, correlation rules, and role-based LDAP construction inducement; demonstrated automated provisioning to 389 Directory Server and termination lifecycle with reconciliation-initiated audit trail evidencing zero manual access changes.
+
+
+### Saturday 3 — Mover Process and RBAC
+
+**Session:** May 23, 2026  
+**Scenario:** Extending SimplifyTech's IGA platform with role-based access control, automated Mover detection, and post-Mover access governance.
+
+---
+
+#### What I Built
+
+Implemented a complete RBAC model with two distinct assignment patterns and executed a full Mover lifecycle end to end. Configured auto-assigned department roles via Object Template condition mappings and a manually requestable Contractor role with request-and-approval workflow. Executed a Mover event by changing Emma Clarke's department from Engineering to HR in SimplifyHR and verified automatic role delta via reconciliation. Set up and ran a full Access Certification campaign as Sophie Müller — actioning three review items and revoking the Contractor role with automated remediation completing the governance loop.
+
+---
+
+#### Architecture — The RBAC and Mover Pipeline
+
+```
+SimplifyHR (hr.csv)
+      |
+      | Department attribute change detected by reconciliation
+      v
+midPoint — Object Template fires
+  - auto-engineering-role condition: organizationalUnit == 'Engineering'
+  - auto-hr-role condition: organizationalUnit == 'HR'
+  - Contractor: no condition mapping — not auto-assigned or auto-removed
+      |
+      | Role delta calculated:
+      | Engineering_Employee removed (condition false)
+      | HR_Employee assigned (condition true)
+      | Contractor stays (manually assigned — requires explicit revocation)
+      v
+Access Certification Campaign
+  - Reviewer resolved: extension/managerEmpId = 1001 → Sophie Müller
+  - Sophie reviews: Employee (certify), HR_Employee (certify), Contractor (revoke)
+  - Automated remediation removes Contractor role after Revoke decision
+      |
+      v
+Audit Trail — complete governance evidence
+```
+
+---
+
+#### The Two RBAC Patterns
+
+Every real IAM implementation has both. Understanding the difference is what separates someone who configures tools from someone who designs governance programs.
+
+| Pattern | Roles | Assignment Trigger | Removal Trigger |
+|---|---|---|---|
+| **Auto-assigned** | Engineering_Employee, HR_Employee | Object Template condition evaluates true | Condition evaluates false on next reconciliation |
+| **Manually requested** | Contractor | Explicit self-service request + administrator approval | Explicit revocation or Access Certification campaign decision |
+
+Auto-assigned roles enforce the HR source as the authority. Manually requested roles enforce human accountability for elevated or sensitive access. Both are necessary. Neither is sufficient alone.
+
+---
+
+#### The Most Important Concept From This Session
+
+**The Object Template is the automation engine. `strength: strong` means the HR source always wins.**
+
+The condition mappings fire on every user focus object during every reconciliation run. When Emma Clarke's `organizationalUnit` changed from Engineering to HR, both conditions re-evaluated simultaneously:
+
+```xml
+<mapping>
+    <name>auto-engineering-role</name>
+    <strength>strong</strength>
+    <condition>
+        <script><code>organizationalUnit == 'Engineering'</code></script>
+    </condition>
+    <target><path>assignment</path></target>
+</mapping>
+```
+
+`strength: strong` means if an administrator manually removes Engineering_Employee from a user still in Engineering, the next reconciliation will re-assign it. The Object Template enforces the HR source as authority — not individual administrators.
+
+**Enterprise equivalent:**
+- SailPoint IdentityNow: Lifecycle Event rules / birthright role assignment
+- Saviynt: Role Assignment Policy
+- Microsoft Entra ID Governance: Lifecycle Workflows with role assignment actions
+
+---
+
+#### Screenshots
+
+**Roles list — Engineering_Employee and HR_Employee created**
+
+![Roles List](screenshots/week3_roles_list_engineering_hr.png)
+
+**Engineering_Employee — OpenLDAP Account construction inducement**
+
+![Engineering Role Inducement](screenshots/week3_engineering_role_inducement.png)
+
+**Emma Clarke — before Mover (Employee, Engineering_Employee, Contractor)**
+
+![Emma Before Mover](screenshots/week3_emma_three_roles.png)
+
+**SimplifyHR — Emma Clarke department changed to HR**
+
+![SimplifyHR Emma HR](screenshots/week3_simplifyhr_emma_hr.png)
+
+**Emma Clarke — after Mover (Engineering_Employee removed, HR_Employee assigned, Contractor stays)**
+
+![Emma After Mover](screenshots/week3_emma_after_mover.png)
+
+**Sophie Müller — before and after End User role assigned**
+
+![Sophie Before](screenshots/week3_sophie_before_setup.png)
+![Sophie After](screenshots/week3_sophie_after_setup.png)
+
+**Object Template — audit log evidence of End User and Reviewer mappings added**
+
+![Object Template Audit End User](screenshots/week3_object_template_audit_enduser.png)
+![Object Template Audit Reviewer](screenshots/week3_object_template_audit_reviewer.png)
+
+**Access Certification campaign — items under review as Sophie Müller**
+
+![Certification Items](screenshots/week3_certification_items.png)
+
+---
+
+#### Audit Log — What the Evidence Shows
+
+| Event | What It Proves |
+|---|---|
+| Object Template modified — auto-engineering-role added | Condition mapping configured to auto-assign Engineering role |
+| Object Template modified — auto-hr-role added | Condition mapping configured to auto-assign HR role |
+| Object Template modified — auto-enduser-role added | End User role added to Object Template for all users |
+| Object Template modified — auto-reviewer-role added | Reviewer role mapping added to Object Template |
+| Emma Clarke (1005) — Modify object via Reconciliation | organizationalUnit changed, Engineering_Employee removed, HR_Employee assigned |
+| Access Certification campaign — Contractor revoked | Reviewer decision executed, automated remediation removed Contractor role |
+
+**Lesson learned — screenshot timing:**
+The Contractor role was revoked in the certification campaign before the screenshot was taken. In real audit situations, evidence must be captured before actioning items — the screenshot is the visual evidence, and the midPoint audit log is the system-of-record backup. Always screenshot the pending decision first, then action it.
+
+---
+
+#### Enterprise Equivalents
+
+| Lab Component | Enterprise Equivalent |
+|---|---|
+| Object Template condition mapping | SailPoint Lifecycle Event rule / Saviynt Role Assignment Policy |
+| Auto-assigned role | Birthright role / department-driven entitlement |
+| Manually requested role | Access request via IGA self-service catalog with approval |
+| Request-and-approval workflow | Manager or owner approval workflow in SailPoint / ServiceNow integration |
+| Access Certification campaign | Certification campaign (SailPoint) / Access Review (Saviynt / Entra ID Governance) |
+| Reviewer resolution via manager attribute | Manager-driven review assignment in SailPoint / Entra ID Access Reviews |
+| Automated remediation | Post-certification revocation action in SailPoint IdentityNow |
+
+---
+
+#### GRC and Compliance Evidence
+
+| Event | Control Evidenced | Framework |
+|---|---|---|
+| Engineering_Employee removed on department change | Access removed when role changes | SOC 2 CC6.3 |
+| HR_Employee assigned on department change | Access provisioned appropriate to current role | SOC 2 CC6.2 |
+| Contractor request logged with approver identity | Elevated access granted through authorized workflow | SOC 2 CC6.1 / CC6.2 |
+| Certification campaign with reviewer decisions | Periodic access review with documented decisions | SOC 2 CC6.6 |
+| Contractor revoked + automated remediation | Access removed following review decision | SOC 2 CC6.3 |
+| All role changes via Reconciliation | System-governed access changes, not manual | SOC 2 CC6.1 |
+
+---
+
+#### Production Note — Why the Mover Is Riskier Than the Joiner
+
+A Joiner starts from nothing. The worst outcome is too much access from day one — visible and auditable from the first provisioning event.
+
+A Mover carries their history. Every manually assigned role, every access granted before the IGA platform existed, every system not connected to the IGA platform — all of it persists through the Mover event unless explicitly revoked. The Contractor role staying after Emma's department change is a controlled example of exactly this pattern.
+
+In a real enterprise Mover event, the same applies to Salesforce profiles, GitHub repository membership, AWS permission sets, and application-specific permissions accumulated over years. Access Certification is not optional — it is the only mechanism that catches what automated provisioning cannot reach.
+
+---
+
+#### What I Built
+
+Implemented role-based access control in midPoint IGA with auto-assigned department roles via Object Template conditions and a manually requestable Contractor role with approval workflow. Executed a Mover event demonstrating automated role delta and ran a full Access Certification campaign with reviewer resolution, certification decisions, and automated remediation completing the governance loop end to end.
+
+---
+
+#### Resume Bullet
+
+> Implemented RBAC in midPoint IGA — configured auto-assigned department roles via Object Template conditions and manually requestable Contractor role with approval workflow; executed Mover event with automated role delta and ran full Access Certification campaign with manager-resolved reviewer, certification decisions, and automated remediation.
