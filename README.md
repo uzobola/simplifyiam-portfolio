@@ -349,7 +349,7 @@ Deleting an account on termination destroys evidence. If a security incident lat
 
 #### What I Built
 
-Implemented a complete RBAC model with two distinct assignment patterns and executed a full Mover lifecycle end to end. Configured auto-assigned department roles via Object Template condition mappings and a manually requestable Contractor role with request-and-approval workflow. Executed a Mover event by changing Emma Clarke's department from Engineering to HR in SimplifyHR and verified automatic role delta via reconciliation. Set up and ran a full Access Certification campaign as Sophie Müller — actioning three review items and revoking the Contractor role with automated remediation completing the governance loop.
+Implemented a complete RBAC model with two distinct assignment patterns and executed a full Mover lifecycle end to end. Configured auto-assigned department roles via Object Template condition mappings and a manually requestable Contractor role with request-and-approval workflow. Executed a Mover event by changing Emma Clarke's department from Engineering to HR in SimplifyHR and verified automatic role delta via reconciliation. Set up and ran a full Access Certification campaign as Sophie Müller, creating three review items and revoking the Contractor role with automated remediation completing the governance loop.
 
 ---
 
