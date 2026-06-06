@@ -460,11 +460,11 @@ The Contractor role was revoked in the certification campaign before the screens
 
 #### Production Note — Why the Mover Is Riskier Than the Joiner
 
-A Joiner starts from nothing. The worst outcome is too much access from day one — visible and auditable from the first provisioning event.
+A Joiner starts from nothing. The worst outcome is too much access from day one, visible and auditable from the first provisioning event.
 
-A Mover carries their history. Every manually assigned role, every access granted before the IGA platform existed, every system not connected to the IGA platform — all of it persists through the Mover event unless explicitly revoked. The Contractor role staying after Emma's department change is a controlled example of exactly this pattern.
+A Mover carries their history. Every manually assigned role, every access granted before the IGA platform existed, every system not connected to the IGA platform, all of it persists through the Mover event unless explicitly revoked. The Contractor role staying after Emma's department change is a controlled example of exactly this pattern.
 
-In a real enterprise Mover event, the same applies to Salesforce profiles, GitHub repository membership, AWS permission sets, and application-specific permissions accumulated over years. Access Certification is not optional — it is the only mechanism that catches what automated provisioning cannot reach.
+In a real enterprise Mover event, the same applies to Salesforce profiles, GitHub repository membership, AWS permission sets, and application-specific permissions accumulated over years. Access Certification is not optional, it is the only mechanism that catches what automated provisioning cannot reach.
 
 ---
 
