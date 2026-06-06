@@ -168,7 +168,7 @@ midPoint — Phase 2
 
 After creating the OpenLDAP resource, running reconciliation produced no LDAP accounts. The resource existed. The identities existed. But nothing was provisioned.
 
-The missing link: the Employee role needed a construction inducement pointing to OpenLDAP. That inducement is the instruction that tells midPoint — for every user with this role, create an account on this resource.
+The missing link: the Employee role needed a construction inducement pointing to OpenLDAP. That inducement is the instruction that tells midPoint, for every user with this role, to create an account on this resource.
 
 The provisioning chain is: focus object → role assignment → role inducement → resource construction → account on target. Breaking any link in that chain means no provisioning. Understanding this chain is what separates someone who follows a lab guide from someone who can diagnose a provisioning failure at 2am in production.
 
@@ -244,7 +244,7 @@ The provisioning chain is: focus object → role assignment → role inducement 
 
 #### Access Certification — The Full Governance Loop
 
-After the Mover event, the Contractor role remained assigned to Emma Clarke. Auto-assigned roles follow the department change automatically. Manually assigned roles do not — they require an explicit governance decision.
+After the Mover event, the Contractor role remained assigned to Emma Clarke. Auto-assigned roles follow the department change automatically. Manually assigned roles do not, they require an explicit governance decision.
 
 An Access Certification campaign was created and run to close this gap:
 
@@ -281,7 +281,7 @@ Audit trail records reviewer identity, decision, and timestamp
 This is the complete governance loop. Provisioning handles what the system can determine automatically from the HR source. Certification handles the judgment calls that require human review.
 
 **Key lesson — Reviewer role is a prerequisite:**  
-The Reviewer role must be assigned before a user can action certification items. Without it, the Certification tab is not visible in the self-service UI. This is a common implementation gap in enterprise deployments — reviewer accounts exist but cannot action reviews because the Reviewer role was never assigned. Sophie Müller was manually assigned the Reviewer role in Step 0a before the campaign was started.
+The Reviewer role must be assigned before a user can action certification items. Without it, the Certification tab is not visible in the self-service UI. This is a common implementation gap in enterprise deployments, reviewer accounts exist but cannot action reviews because the Reviewer role was never assigned. Sophie Müller was manually assigned the Reviewer role in Step 0a before the campaign was started.
 
 ---
 
@@ -460,7 +460,7 @@ The condition mappings fire on every user focus object during every reconciliati
 
 #### Access Certification — The Full Governance Loop
 
-After the Mover event, the Contractor role remained assigned to Emma Clarke. Auto-assigned roles follow the department change automatically. Manually assigned roles do not — they require an explicit governance decision.
+After the Mover event, the Contractor role remained assigned to Emma Clarke. Auto-assigned roles follow the department change automatically. Manually assigned roles do not, they require an explicit governance decision.
 
 An Access Certification campaign was created and run to close this gap:
 
@@ -497,7 +497,7 @@ Audit trail records reviewer identity, decision, and timestamp
 This is the complete governance loop. Provisioning handles what the system can determine automatically from the HR source. Certification handles the judgment calls that require human review.
 
 **Key lesson — Reviewer role is a prerequisite:**  
-The Reviewer role must be assigned before a user can action certification items. Without it, the Certification tab is not visible in the self-service UI. This is a common implementation gap in enterprise deployments — reviewer accounts exist but cannot action reviews because the Reviewer role was never assigned. Sophie Müller was manually assigned the Reviewer role in Step 0a before the campaign was started.
+The Reviewer role must be assigned before a user can action certification items. Without it, the Certification tab is not visible in the self-service UI. This is a common implementation gap in enterprise deployments, reviewer accounts exist but cannot action reviews because the Reviewer role was never assigned. Sophie Müller was manually assigned the Reviewer role in Step 0a before the campaign was started.
 
 ---
 
@@ -513,7 +513,7 @@ The Reviewer role must be assigned before a user can action certification items.
 | Access Certification campaign — Contractor revoked | Reviewer decision executed, automated remediation removed Contractor role |
 
 **Lesson learned — screenshot timing:**
-The Contractor role was revoked in the certification campaign before the screenshot was taken. In real audit situations, evidence must be captured before actioning items — the screenshot is the visual evidence, and the midPoint audit log is the system-of-record backup. Always screenshot the pending decision first, then action it.
+The Contractor role was revoked in the certification campaign before the screenshot was taken. In real audit situations, evidence must be captured before actioning items, the screenshot is the visual evidence, and the midPoint audit log is the system-of-record backup. Always screenshot the pending decision first, then action it.
 
 ---
 
