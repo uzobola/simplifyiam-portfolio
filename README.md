@@ -242,6 +242,49 @@ The provisioning chain is: focus object → role assignment → role inducement 
 
 ---
 
+#### Access Certification — The Full Governance Loop
+
+After the Mover event, the Contractor role remained assigned to Emma Clarke. Auto-assigned roles follow the department change automatically. Manually assigned roles do not — they require an explicit governance decision.
+
+An Access Certification campaign was created and run to close this gap:
+
+**Campaign:** Mover Access Review - Post Department Change  
+**Scope:** All users  
+**Reviewer:** Sophie Müller — resolved automatically from Emma Clarke's `extension/managerEmpId = 1001`  
+**Remediation:** Automated — revoked roles removed without manual IT intervention
+
+```
+Mover detected — role delta applied automatically
+        |
+        v
+Contractor role persists — manually assigned, no condition governs it
+        |
+        v
+Certification campaign started — Sophie Müller assigned as reviewer
+        |
+        v
+Sophie reviews three items:
+  Employee → Certify (base identity role, correct for all active users)
+  HR_Employee → Certify (new department role, correct)
+  Contractor → Revoke (Engineering-era access, no longer relevant in HR)
+        |
+        v
+Automated remediation executes Revoke decision
+        |
+        v
+Contractor removed from Emma Clarke's assignments
+        |
+        v
+Audit trail records reviewer identity, decision, and timestamp
+```
+
+This is the complete governance loop. Provisioning handles what the system can determine automatically from the HR source. Certification handles the judgment calls that require human review.
+
+**Key lesson — Reviewer role is a prerequisite:**  
+The Reviewer role must be assigned before a user can action certification items. Without it, the Certification tab is not visible in the self-service UI. This is a common implementation gap in enterprise deployments — reviewer accounts exist but cannot action reviews because the Reviewer role was never assigned. Sophie Müller was manually assigned the Reviewer role in Step 0a before the campaign was started.
+
+---
+
 #### Audit Log — What the Evidence Shows
 
 Three audit screenshots capture the complete session:
@@ -412,6 +455,49 @@ The condition mappings fire on every user focus object during every reconciliati
 **Access Certification campaign — items under review as Sophie Müller**
 
 ![Certification Items](screenshots/week3_certification_items.png)
+
+---
+
+#### Access Certification — The Full Governance Loop
+
+After the Mover event, the Contractor role remained assigned to Emma Clarke. Auto-assigned roles follow the department change automatically. Manually assigned roles do not — they require an explicit governance decision.
+
+An Access Certification campaign was created and run to close this gap:
+
+**Campaign:** Mover Access Review - Post Department Change  
+**Scope:** All users  
+**Reviewer:** Sophie Müller — resolved automatically from Emma Clarke's `extension/managerEmpId = 1001`  
+**Remediation:** Automated — revoked roles removed without manual IT intervention
+
+```
+Mover detected — role delta applied automatically
+        |
+        v
+Contractor role persists — manually assigned, no condition governs it
+        |
+        v
+Certification campaign started — Sophie Müller assigned as reviewer
+        |
+        v
+Sophie reviews three items:
+  Employee → Certify (base identity role, correct for all active users)
+  HR_Employee → Certify (new department role, correct)
+  Contractor → Revoke (Engineering-era access, no longer relevant in HR)
+        |
+        v
+Automated remediation executes Revoke decision
+        |
+        v
+Contractor removed from Emma Clarke's assignments
+        |
+        v
+Audit trail records reviewer identity, decision, and timestamp
+```
+
+This is the complete governance loop. Provisioning handles what the system can determine automatically from the HR source. Certification handles the judgment calls that require human review.
+
+**Key lesson — Reviewer role is a prerequisite:**  
+The Reviewer role must be assigned before a user can action certification items. Without it, the Certification tab is not visible in the self-service UI. This is a common implementation gap in enterprise deployments — reviewer accounts exist but cannot action reviews because the Reviewer role was never assigned. Sophie Müller was manually assigned the Reviewer role in Step 0a before the campaign was started.
 
 ---
 
